@@ -441,21 +441,21 @@ export default function Home() {
       <div className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
         <div className="section-shell">
           <nav className="flex items-center justify-between rounded-full border border-white/10 bg-slate-950/85 px-4 py-3 shadow-glow backdrop-blur-xl md:px-5">
-            <a href="#top" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/90">
+            <a href="#top" className="flex items-center gap-4">
+              <div className="flex h-14 w-[112px] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white px-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
                 <Image
                   src="/images/logo.png"
                   alt="Smart Follow-Up logo"
-                  width={80}
-                  height={80}
-                  className="h-full w-full object-cover"
+                  width={702}
+                  height={292}
+                  className="h-9 w-auto scale-[1.32] object-contain"
                 />
               </div>
-              <div>
-                <div className="font-display text-sm font-semibold tracking-wide text-white">
-                  Smart Follow-Up
+              <div className="hidden min-w-0 sm:block">
+                <div className="text-[11px] uppercase tracking-[0.22em] text-sky-300/90">
+                  AI Relationship Layer
                 </div>
-                <div className="text-xs text-slate-400">{t.nav.subhead}</div>
+                <div className="text-sm text-slate-300">{t.nav.subhead}</div>
               </div>
             </a>
 
