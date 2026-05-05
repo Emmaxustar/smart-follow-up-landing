@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #06111f;
+  --foreground: #ebf4ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 7rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(129, 140, 248, 0.16), transparent 28%),
+    linear-gradient(180deg, #071221 0%, #08111b 35%, #050a12 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-foreground;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.section-shell {
+  margin-inline: auto;
+  width: min(1260px, calc(100% - 2rem));
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    width: min(1260px, calc(100% - 4rem));
+  }
+}
+
+.grid-glow {
+  position: relative;
+}
+
+.grid-glow::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.35),
+    rgba(167, 139, 250, 0.18),
+    rgba(255, 255, 255, 0.03)
+  );
+  content: "";
+  opacity: 0.9;
+}
