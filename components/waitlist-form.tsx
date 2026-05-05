@@ -9,6 +9,7 @@ type WaitlistFormProps = {
   emptyMessage: string;
   invalidMessage: string;
   successMessage: string;
+  configMessage: string;
 };
 
 export function WaitlistForm({
@@ -17,11 +18,12 @@ export function WaitlistForm({
   emptyMessage,
   invalidMessage,
   successMessage,
+  configMessage,
 }: WaitlistFormProps) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!email.trim()) {
@@ -36,7 +38,41 @@ export function WaitlistForm({
       return;
     }
 
-    setMessage(successMessage);
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        let errorMessage = configMessage;
+
+        try {
+          const data = (await response.json()) as { error?: string };
+          if (data.error) {
+            errorMessage = data.error;
+          }
+        } catch {
+          errorMessage = configMessage;
+        }
+
+        setMessage(errorMessage);
+        return;
+      }
+
+      setEmail("");
+      setMessage(successMessage);
+    } catch {
+      setMessage(
+        "Submission failed. Please check your network, Apps Script deployment access, and webhook URL.",
+      );
+    }
   }
 
   return (

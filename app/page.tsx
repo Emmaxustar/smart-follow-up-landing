@@ -193,7 +193,9 @@ const content = {
       empty: "Please enter your email.",
       invalid: "Please enter a valid email address.",
       success:
-        "Thanks. This demo waitlist form is active in the UI and ready to connect to your backend.",
+        "Thanks. Your email has been sent to the waitlist sheet.",
+      config:
+        "Waitlist submission could not be completed. Please verify NEXT_PUBLIC_SHEETS_WEBHOOK_URL and your Apps Script deployment access.",
     },
     common: {
       month: "/month",
@@ -385,7 +387,9 @@ const content = {
       button: "申请抢先体验",
       empty: "请输入你的邮箱。",
       invalid: "请输入有效的邮箱地址。",
-      success: "收到。这个演示版候补表单已经可以在界面中交互，下一步可以接入你的真实后端。",
+      success: "收到。你的邮箱已经提交到 waitlist 表格。",
+      config:
+        "候补提交没有完成。请检查 NEXT_PUBLIC_SHEETS_WEBHOOK_URL 和 Apps Script 的部署访问权限。",
     },
     common: {
       month: "/月",
@@ -438,8 +442,14 @@ export default function Home() {
         <div className="section-shell">
           <nav className="flex items-center justify-between rounded-full border border-white/10 bg-slate-950/85 px-4 py-3 shadow-glow backdrop-blur-xl md:px-5">
             <a href="#top" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-blue-500 to-violet-500 text-sm font-semibold text-slate-950">
-                SF
+              <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/90">
+                <Image
+                  src="/images/logo.png"
+                  alt="Smart Follow-Up logo"
+                  width={80}
+                  height={80}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div>
                 <div className="font-display text-sm font-semibold tracking-wide text-white">
@@ -827,6 +837,7 @@ export default function Home() {
               emptyMessage={t.waitlist.empty}
               invalidMessage={t.waitlist.invalid}
               successMessage={t.waitlist.success}
+              configMessage={t.waitlist.config}
             />
           </CardContent>
         </Card>
